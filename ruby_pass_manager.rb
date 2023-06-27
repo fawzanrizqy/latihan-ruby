@@ -50,10 +50,11 @@ else
     exit #exit the program
 end #end of if else
 
+loop do
 
 # alternative condition for password:
 unless user_password != USER_VAULT[username][:password] #unless itu kondisinya kebalikan if
-    puts "Hello, #{user_email}." #ini seperti ` ${user_email}` in js
+    puts "\n\nHello, #{user_email}." #ini seperti ` ${user_email}` in js
     puts "Menu: "
     puts "1. Add new user"
     puts "2. List users"
@@ -67,13 +68,13 @@ end
 
 
 #swicth case in ruby:
+
 case user_selection
 when "1"
     puts "this will create a new user"
     print "Enter new user name: "
-    new_user_name = gets.chomp 
-    print "Enter new user email: "
     new_user_email = gets.chomp 
+    new_user_name = new_user_email.split("@")[0]
     print "Enter new user password: "
     new_user_password = gets.chomp 
     USER_VAULT[new_user_name] = {}
@@ -120,5 +121,7 @@ else #default case in swithc case
     print "are you sure you want to exit? (y/n): "
     user_selection_exit = gets.chomp
     puts user_selection_exit == "y" ?   "Exiting program" : "You are not exiting the program"
-    
+    user_selection_exit == "y"? exit : ""
 end 
+
+end #end of do
